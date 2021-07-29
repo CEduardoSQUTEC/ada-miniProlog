@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/strie.cpp
+strie.h
+/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/strie.h
+iostream
+-
+iomanip
+-
+
+/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/strie.h
+vector
+-
+unordered_map
+-
+unordered_set
+-
+bitset
+-
+algorithm
+-
+

@@ -85,6 +85,12 @@
 		<Unit filename="/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/main.cpp">
 			<Option target="src"/>
 		</Unit>
+		<Unit filename="/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/strie.cpp">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/strie.h">
+			<Option target="src"/>
+		</Unit>
 		<Unit filename="/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
