@@ -31,16 +31,16 @@ class strie {
 
     void built_opt(int n, int m);
 
-//    int opt_(int i, int j, int m);
+    void built_trie(int i, int j, int n, int m, const std::vector<std::string> &S);
 
-    int count_bits(std::bitset<maxm>, int m);
+    static int count_bits(std::bitset<maxm>, int m);
 
 public:
     strie(int n, int m, const std::vector<std::string> &S);
 
-    friend std::ostream &operator<<(std::ostream &os, const strie &st);
-
     int get_size();
+
+    friend std::ostream &operator<<(std::ostream &os, const strie &st);
 };
 
 std::ostream &operator<<(std::ostream &os, const strie &st);

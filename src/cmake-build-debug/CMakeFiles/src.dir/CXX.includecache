@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/main.cpp
+iostream
+-
+vector
+-
+strie.h
+/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/strie.h
+
 /home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/strie.cpp
 strie.h
 /home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/strie.h

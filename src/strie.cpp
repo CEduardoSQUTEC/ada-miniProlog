@@ -107,12 +107,25 @@ void strie::built_opt(int n, int m) {
     }
 }
 
+void strie::built_trie(int i, int j, int n, int m, const std::vector<std::string> &S) {
+    std::vector<int> K_;
+    for (int k = 0; k < m; ++k) if (K[i][j][k]) K_.push_back(k);
+    int old_size = trie.size();
+    for (const auto &e: K_)
+        trie.push_back(std::unordered_map<char, int>() = {{'*', e}});
+    for (int k = old_size; k < trie.size() - 1; ++k) {
+        char edge = S[i][trie[k]['*']];
+        trie[k][edge] = k + 1;
+    }
+}
+
 strie::strie(int n, int m, const std::vector<std::string> &S) {
     built_KR(S, n, m);
     built_C(n, m, S);
     built_opt(n, m);
     int edges = count_bits(K[0][S.size() - 1], m) + opt[0][S.size() - 1];
     std::cout << edges << '\n';
+    built_trie(0, S.size() - 1, n, m);
 }
 
 std::ostream &operator<<(std::ostream &os, const strie &st) {
@@ -123,6 +136,7 @@ int strie::get_size() {
     return trie.size();
 
 }
+
 
 //  Imprimir C
 //    for (int r = 0; r < m; ++r) {
