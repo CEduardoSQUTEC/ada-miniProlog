@@ -77,16 +77,6 @@ void strie::built_C(int n, int m, const std::vector<std::string> &S) { // O(k*n^
     }
 }
 
-//int strie::opt_(int i, int j, int m) {
-//    if (i == j) return 0;
-//    std::vector<int> R_;
-//    for (int k = 0; k < m; ++k)
-//        if (R[i][j][k]) R_.push_back(k);
-//    int result = 0;
-//    for (const auto &r: R_) {
-//        result = opt_()
-//    }
-//}
 
 int strie::count_bits(std::bitset<maxm> bs, int m) {
     int result = 0;
@@ -103,12 +93,12 @@ void strie::built_opt(int n, int m) {
             int j = i + l;
             std::vector<int> R_;
             for (int k = 0; k < m; ++k) if (R[i][j][k]) R_.push_back(k);
-            opt[i][j] = 0;
+            opt[i][j] = 1e9;
             for (const auto &r: R_) {
                 int temp_op = 0;
                 for (const auto &p: C[i][j][r])
                     temp_op += opt[p.first][p.second] + count_bits(K[p.first][p.second], m) - count_bits(K[i][j], m);
-                if (temp_op > opt[i][j]) {
+                if (temp_op < opt[i][j]) {
                     P[i][j] = r;
                     opt[i][j] = temp_op;
                 }
@@ -121,7 +111,8 @@ strie::strie(int n, int m, const std::vector<std::string> &S) {
     built_KR(S, n, m);
     built_C(n, m, S);
     built_opt(n, m);
-    int edges = count_bits(K[0][S.size()], m) + opt[0][S.size() - 1];
+    int edges = count_bits(K[0][S.size() - 1], m) + opt[0][S.size() - 1];
+    std::cout << edges << '\n';
 }
 
 std::ostream &operator<<(std::ostream &os, const strie &st) {
@@ -132,8 +123,6 @@ int strie::get_size() {
     return trie.size();
 
 }
-
-
 
 //  Imprimir C
 //    for (int r = 0; r < m; ++r) {
@@ -153,3 +142,14 @@ int strie::get_size() {
 //        }
 //    }
 
+
+//int strie::opt_(int i, int j, int m) {
+//    if (i == j) return 0;
+//    std::vector<int> R_;
+//    for (int k = 0; k < m; ++k)
+//        if (R[i][j][k]) R_.push_back(k);
+//    int result = 0;
+//    for (const auto &r: R_) {
+//        result = opt_()
+//    }
+//}
