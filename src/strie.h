@@ -31,7 +31,7 @@ class strie {
 
     void built_opt(int n, int m);
 
-    void built_trie(int i, int j, int n, int m, const std::vector<std::string> &S);
+    int built_trie(int i, int j, int n, int m, const std::vector<std::string> &S, std::bitset<maxm> set);
 
     static int count_bits(std::bitset<maxm>, int m);
 

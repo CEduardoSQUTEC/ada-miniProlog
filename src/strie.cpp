@@ -5,6 +5,7 @@
 #include "strie.h"
 #include <iostream>
 #include <iomanip>
+#include <valarray>
 
 void strie::set_alphabet(const std::vector<std::string> &S) { // O(nm)
     std::unordered_set<char> L;
@@ -107,16 +108,34 @@ void strie::built_opt(int n, int m) {
     }
 }
 
-void strie::built_trie(int i, int j, int n, int m, const std::vector<std::string> &S) {
+int strie::built_trie(int i, int j, int n, int m, const std::vector<std::string> &S, std::bitset<maxm> set) {
+    // Save the current state
+    int current_state = trie.size();
+    // Set K[i, j]
     std::vector<int> K_;
-    for (int k = 0; k < m; ++k) if (K[i][j][k]) K_.push_back(k);
-    int old_size = trie.size();
+    // i == j then just print the remaining positions.
+    if (i != j) set = set & ~(K[i][j]);
+    for (int k = 0; k < m; ++k) if (set[k]) K_.push_back(k);
+    // Add K[i,j] states
     for (const auto &e: K_)
         trie.push_back(std::unordered_map<char, int>() = {{'*', e}});
-    for (int k = old_size; k < trie.size() - 1; ++k) {
+    // i == j add the last blank node
+    if (i == j) trie.push_back(std::unordered_map<char, int>() = {{'*', -1}});
+    // Add the edges between them
+    for (int k = current_state; k < trie.size() - 1; ++k) {
         char edge = S[i][trie[k]['*']];
         trie[k][edge] = k + 1;
     }
+    if (i != j) {
+        // C[i, j, r] Built the rest of the tree
+        int r = P[i][j];
+        int last_state = trie.size() - 1;
+        for (const auto &p: C[i][j][r]) {
+            char edge = S[i][trie[last_state]['*']];
+            trie[last_state][edge] = built_trie(p.first, p.second, n, m, S, set);
+        }
+    }
+    return current_state;
 }
 
 strie::strie(int n, int m, const std::vector<std::string> &S) {
@@ -125,7 +144,7 @@ strie::strie(int n, int m, const std::vector<std::string> &S) {
     built_opt(n, m);
     int edges = count_bits(K[0][S.size() - 1], m) + opt[0][S.size() - 1];
     std::cout << edges << '\n';
-    built_trie(0, S.size() - 1, n, m);
+    built_trie(0, S.size() - 1, n, m, S, std::bitset<maxm>((1LL << (m)) - 1));
 }
 
 std::ostream &operator<<(std::ostream &os, const strie &st) {
@@ -155,7 +174,6 @@ int strie::get_size() {
 //            std::cout << '\n';
 //        }
 //    }
-
 
 //int strie::opt_(int i, int j, int m) {
 //    if (i == j) return 0;
