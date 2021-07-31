@@ -8,6 +8,8 @@ int main() {
     std::cin >> n >> m;
     std::vector<std::string> S(n);
     for (auto &s: S) std::cin >> s;
+
     strie st(n, m, S);
+    std::cout << st << '\n';
     return 0;
 }
