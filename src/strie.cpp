@@ -155,8 +155,8 @@ void strie::print(int node, char edge = '*', int depth = 0) {
     for (int i = 0; i < depth - 1; ++i)
         std::cout << "|   ";
     if (depth > 0)
-        std::cout << "L---";
-    std::cout << "(" << edge << ") " << trie[node][key_position] << "\n";
+        std::cout << "|-" << edge << "-";
+    std::cout << trie[node][key_position] << "\n";
     for (auto &child: trie[node]) {
         if (child.first == key_position) continue;
         print(child.second, child.first, depth + 1);
