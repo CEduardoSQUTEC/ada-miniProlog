@@ -4,8 +4,6 @@
 
 #include "strie.h"
 #include <iostream>
-#include <iomanip>
-#include <valarray>
 
 int count_bits(std::bitset<maxm> bs, int m) {
     int result = 0;
@@ -51,8 +49,7 @@ void strie::built_KR(const std::vector<std::string> &S, int n, int m) { // O(n^2
     }
 }
 
-
-void strie::built_C(int n, int m, const std::vector<std::string> &S) { // O(k*n^3)
+void strie::built_C(int n, int m, const std::vector<std::string> &S) { // O(k*n*m)
     C.resize(n, std::vector<std::vector<std::vector<std::pair<int, int>>>>(n,
                                                                            std::vector<std::vector<std::pair<int, int>>>(
                                                                                    m)));
@@ -75,7 +72,6 @@ void strie::built_C(int n, int m, const std::vector<std::string> &S) { // O(k*n^
         }
     }
 }
-
 
 void strie::built_opt(int n, int m) {
     opt.resize(n, std::vector<int>(n));
@@ -171,3 +167,22 @@ std::ostream &operator<<(std::ostream &os, strie &st) {
     st.print(0);
     return os;
 }
+
+std::string strie::to_string() {
+    std::string result = "";
+    for (int i = 0; i < trie.size(); ++i) {
+        result += std::to_string(i) + " [";
+        std::vector<std::pair<char, int>> a;
+        for (const auto &e:trie[i]) {
+            if (e.first == '$') continue;
+            a.push_back({e.first, e.second});
+        }
+        for (auto it = a.rbegin(); it != a.rend(); ++it) {
+            if (it != a.rbegin()) result += ", ";
+            result += "(\'" + std::string(1, it->first) + "\'" + ", " + std::to_string(it->second) + ")";
+        }
+        result += "]\n";
+    }
+    return result;
+}
+

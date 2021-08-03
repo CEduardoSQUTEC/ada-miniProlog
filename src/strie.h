@@ -38,6 +38,8 @@ public:
 
     void print(int, char, int);
 
+    std::string to_string();
+
     friend std::ostream &operator<<(std::ostream &os, const strie &st);
 };
 
