@@ -153,6 +153,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+sptrie.o: sptrie.cpp.o
+.PHONY : sptrie.o
+
+# target to build an object file
+sptrie.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/sptrie.cpp.o
+.PHONY : sptrie.cpp.o
+
+sptrie.i: sptrie.cpp.i
+.PHONY : sptrie.i
+
+# target to preprocess a source file
+sptrie.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/sptrie.cpp.i
+.PHONY : sptrie.cpp.i
+
+sptrie.s: sptrie.cpp.s
+.PHONY : sptrie.s
+
+# target to generate assembly for a file
+sptrie.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/sptrie.cpp.s
+.PHONY : sptrie.cpp.s
+
 strie.o: strie.cpp.o
 .PHONY : strie.o
 
@@ -189,6 +213,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... sptrie.o"
+	@echo "... sptrie.i"
+	@echo "... sptrie.s"
 	@echo "... strie.o"
 	@echo "... strie.i"
 	@echo "... strie.s"

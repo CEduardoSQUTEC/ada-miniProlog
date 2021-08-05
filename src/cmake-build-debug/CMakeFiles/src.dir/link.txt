@@ -1,1 +1,1 @@
-/usr/bin/c++ -g CMakeFiles/src.dir/main.cpp.o CMakeFiles/src.dir/strie.cpp.o -o src 
+/usr/bin/c++ -g CMakeFiles/src.dir/main.cpp.o CMakeFiles/src.dir/strie.cpp.o CMakeFiles/src.dir/sptrie.cpp.o -o src 

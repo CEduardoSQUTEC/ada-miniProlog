@@ -5,7 +5,7 @@
 #include <chrono>
 
 int main() {
-    std::string filename = "RandomTest";
+    std::string filename = "inMed";
     // Open and read file
     std::ifstream input_file("../input/" + filename + ".txt");
     std::vector<std::string> S;
@@ -15,14 +15,14 @@ int main() {
     int n = S.size(), m = S[0].size();
 
     // Recursive Trie
-    std::cout << "<Recursive Trie>\n";
-    std::chrono::time_point<std::chrono::system_clock> start_rec, end_rec;
-    start_rec = std::chrono::system_clock::now();
-    strie strec(n, m, S, strie::recursive);
-    end_rec = std::chrono::system_clock::now();
-    std::chrono::duration<double> elapsed_seconds_rec = end_rec - start_rec;
-    std::cout << "elapsed time: " << elapsed_seconds_rec.count() << "s\n";
-    std::cout << strec << '\n';
+//    std::cout << "<Recursive Trie>\n";
+//    std::chrono::time_point<std::chrono::system_clock> start_rec, end_rec;
+//    start_rec = std::chrono::system_clock::now();
+////    strie strec(n, m, S, strie::recursive);
+//    end_rec = std::chrono::system_clock::now();
+//    std::chrono::duration<double> elapsed_seconds_rec = end_rec - start_rec;
+//    std::cout << "elapsed time: " << elapsed_seconds_rec.count() << "s\n";
+//    std::cout << strec << '\n';
 
     // Memory Trie
     std::cout << "<Memory Trie>\n";
@@ -32,7 +32,7 @@ int main() {
     end_mem = std::chrono::system_clock::now();
     std::chrono::duration<double> elapsed_seconds_mem = end_mem - start_mem;
     std::cout << "elapsed time: " << elapsed_seconds_mem.count() << "s\n";
-    std::cout << stmem << '\n';
+//    std::cout << stmem << '\n';
 
     // DP Trie
     std::cout << "<DP Trie>\n";
@@ -42,12 +42,12 @@ int main() {
     end_dp = std::chrono::system_clock::now();
     std::chrono::duration<double> elapsed_seconds_dp = end_dp - start_dp;
     std::cout << "elapsed time: " << elapsed_seconds_dp.count() << "s\n";
-    std::cout << stdp << '\n';
+//    std::cout << stdp << '\n';
 
     // Save and close file
-    std::ofstream output_file_rec("../output/" + filename + "-rec.txt");
-    output_file_rec << strec.to_string();
-    output_file_rec.close();
+//    std::ofstream output_file_rec("../output/" + filename + "-rec.txt");
+//    output_file_rec << strec.to_string();
+//    output_file_rec.close();
 
     std::ofstream output_file_mem("../output/" + filename + "-mem.txt");
     output_file_mem << stmem.to_string();
