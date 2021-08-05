@@ -12,6 +12,8 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
+#include <utility>
+#include <functional>
 
 bool cmpMap(std::pair<char, int>& a, std::pair<char,int>& b);
 
@@ -72,18 +74,19 @@ struct sptrie {
         char alpha[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" ;
 	    std::vector<char> alphabet( alpha, alpha+sizeof(alpha)-1 );
         std::string result = "";
-        for (auto i : this->nodesList) {
-            result += i.id + " [";
+        for (auto i : nodesList) {
+            result += std::to_string(i.id) + " [";
             std::vector<std::pair<char, int>> temp;
             for (int j = 0; j < alphabet.size(); j++) {
-                if (i.children.find(j) != i.children.end()) {
-                    temp.push_back(std::make_pair('a' + j, i.children[j].id));
+                if (i.children.find((char)j) != i.children.end()) {
+                    std::pair<char, int> a = std::make_pair(('a' + j), i.children[j].id);
+                    temp.push_back(a);
                 }
             }
             std::sort(temp.begin(), temp.end(), cmpMap);
             for (auto it = temp.begin(); it != temp.end(); ++it) {
                 if (it != temp.begin()) result += ", ";
-            result += "(\'" + std::string(1, it->first) + "\'" + ", " + std::to_string(it->second) + ")";
+            result += "(\'" + std::to_string(it->first) + "\'" + ", " + std::to_string(it->second) + ")";
         }
         result += "]\n";
         }
@@ -108,7 +111,7 @@ struct sptrie {
     }
 
     sptrie greedyMinTrie() {
-        std::cout << "<Min S-pTrie>\n";
+        std::cout << "\n<Min S-pTrie>\n";
         this->calculateDiffs();
         std::vector<std::pair<char, int>> d = sortMap(diffs);
         sptrie minSptrie;
@@ -120,9 +123,10 @@ struct sptrie {
             for (auto x : minSptrie.p) {
                 greedyString += string_[x];
             }
-
             minSptrie.S.push_back(greedyString);
         }
+
+        nodesList.push_back(*root);
         for(auto string_ : minSptrie.S) {
 
             minSptrie.insert(string_);
@@ -144,8 +148,10 @@ struct sptrie {
         for (auto string_: S) {
             insert(string_);
         }
+
         setLevels(m, n);
-        std::cout<<"S-ptrie created with "<<nodes<<" nodes\n";
+        nodesList.push_back(*root);
+        std::cout<<"S-ptrie created with "<<nodes<<" edges\n";
     }
 };
 

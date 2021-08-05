@@ -67,17 +67,17 @@
 #include <vector>
 
 int main() {
-    std::string filename = "basicTest03";
+    std::string filename = "inBig2";
     // Open and read file
     std::ifstream input_file("../input/" + filename + ".txt");
     std::vector<std::string> S;
     std::string input;
     while (std::getline(input_file, input)) S.push_back(input);
     input_file.close();
-    int n = S.size(), m = S[0].size();    
-    sptrie sp(S, n, m);
+    int n = S.size(), m = S[0].size();
 
     std::cout << "<S-pTrie>\n";
+    sptrie sp(S, n, m);
     std::chrono::time_point<std::chrono::system_clock> start_mem, end_mem;
     start_mem = std::chrono::system_clock::now();
     auto min = sp.greedyMinTrie();
