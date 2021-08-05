@@ -92,31 +92,31 @@ CMakeFiles/src.dir/strie.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/src.dir/strie.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/strie.cpp -o CMakeFiles/src.dir/strie.cpp.s
 
-CMakeFiles/src.dir/parser.cpp.o: CMakeFiles/src.dir/flags.make
-CMakeFiles/src.dir/parser.cpp.o: ../parser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/src.dir/parser.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/src.dir/parser.cpp.o -c /home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/parser.cpp
+CMakeFiles/src.dir/compiler.cpp.o: CMakeFiles/src.dir/flags.make
+CMakeFiles/src.dir/compiler.cpp.o: ../compiler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/src.dir/compiler.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/src.dir/compiler.cpp.o -c /home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/compiler.cpp
 
-CMakeFiles/src.dir/parser.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/src.dir/parser.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/parser.cpp > CMakeFiles/src.dir/parser.cpp.i
+CMakeFiles/src.dir/compiler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/src.dir/compiler.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/compiler.cpp > CMakeFiles/src.dir/compiler.cpp.i
 
-CMakeFiles/src.dir/parser.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/src.dir/parser.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/parser.cpp -o CMakeFiles/src.dir/parser.cpp.s
+CMakeFiles/src.dir/compiler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/src.dir/compiler.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/compiler.cpp -o CMakeFiles/src.dir/compiler.cpp.s
 
 # Object files for target src
 src_OBJECTS = \
 "CMakeFiles/src.dir/main.cpp.o" \
 "CMakeFiles/src.dir/strie.cpp.o" \
-"CMakeFiles/src.dir/parser.cpp.o"
+"CMakeFiles/src.dir/compiler.cpp.o"
 
 # External object files for target src
 src_EXTERNAL_OBJECTS =
 
 src: CMakeFiles/src.dir/main.cpp.o
 src: CMakeFiles/src.dir/strie.cpp.o
-src: CMakeFiles/src.dir/parser.cpp.o
+src: CMakeFiles/src.dir/compiler.cpp.o
 src: CMakeFiles/src.dir/build.make
 src: CMakeFiles/src.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable src"

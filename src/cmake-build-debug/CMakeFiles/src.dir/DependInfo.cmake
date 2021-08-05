@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/compiler.cpp" "/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/cmake-build-debug/CMakeFiles/src.dir/compiler.cpp.o"
   "/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/main.cpp" "/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/cmake-build-debug/CMakeFiles/src.dir/main.cpp.o"
-  "/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/parser.cpp" "/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/cmake-build-debug/CMakeFiles/src.dir/parser.cpp.o"
   "/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/strie.cpp" "/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/cmake-build-debug/CMakeFiles/src.dir/strie.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

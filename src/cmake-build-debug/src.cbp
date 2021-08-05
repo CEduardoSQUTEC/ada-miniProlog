@@ -82,13 +82,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/compiler.cpp">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/compiler.h">
+			<Option target="src"/>
+		</Unit>
 		<Unit filename="/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/main.cpp">
-			<Option target="src"/>
-		</Unit>
-		<Unit filename="/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/parser.cpp">
-			<Option target="src"/>
-		</Unit>
-		<Unit filename="/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/parser.h">
 			<Option target="src"/>
 		</Unit>
 		<Unit filename="/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/strie.cpp">

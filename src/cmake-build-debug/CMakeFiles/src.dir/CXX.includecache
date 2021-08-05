@@ -6,7 +6,19 @@
 
 #IncludeRegexTransform: 
 
+/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/compiler.cpp
+compiler.h
+/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/compiler.h
+strie.h
+/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/strie.h
+
+/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/compiler.h
+lib.h
 /home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/lib.h
+
+/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/lib.h
+iostream
+-
 vector
 -
 map
@@ -26,19 +38,13 @@ chrono
 queue
 -
 
-/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/parser.cpp
-parser.h
-/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/parser.h
+/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/strie.cpp
 strie.h
 /home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/strie.h
 iostream
 -
 
-/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/parser.h
-lib.h
-/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/lib.h
-
 /home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/strie.h
-parser.h
-/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/parser.h
+compiler.h
+/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/compiler.h
 
