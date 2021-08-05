@@ -4,6 +4,9 @@
 CMakeFiles/src.dir/main.cpp.o: \
  ../main.cpp \
  ../strie.h
+CMakeFiles/src.dir/sptrie.cpp.o: \
+ ../sptrie.cpp \
+ ../sptrie.h
 CMakeFiles/src.dir/strie.cpp.o: \
  ../strie.cpp \
  ../strie.h

@@ -4,6 +4,9 @@
 CMakeFiles/src.dir/main.cpp.o
  /home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/main.cpp
  /home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/strie.h
+CMakeFiles/src.dir/sptrie.cpp.o
+ /home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/sptrie.cpp
+ /home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/sptrie.h
 CMakeFiles/src.dir/strie.cpp.o
  /home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/strie.cpp
  /home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/strie.h
