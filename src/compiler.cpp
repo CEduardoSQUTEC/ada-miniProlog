@@ -131,7 +131,7 @@ void compiler::display_menu() {
                 break;
             }
             case 2: {
-                compile_opt = false;
+                compile_opt = true;
                 std::cout << "\t*== MODE: Se compilara con el algoritmo óptimo.\n";
                 break;
             }
