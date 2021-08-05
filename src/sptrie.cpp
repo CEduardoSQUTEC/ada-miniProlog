@@ -6,5 +6,4 @@
 
 sptrie::sptrie(const std::vector<std::string> &S, int n, int m) {
 
-
 }
