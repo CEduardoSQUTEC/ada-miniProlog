@@ -136,11 +136,73 @@ int strie::built_trie(int i, int j, int n, int m, const std::vector<std::string>
     return current_state;
 }
 
-strie::strie(int n, int m, const std::vector<std::string> &S) {
-    built_KR(S, n, m);
-    built_C(n, m, S);
-    built_opt(n, m);
-    built_trie(0, S.size() - 1, n, m, S, std::bitset<maxm>((1LL << (m)) - 1));
+std::bitset<maxm> strie::K_recursive(int i, int j, const std::vector<std::string> &S) {
+    int m = S[i].size();
+    std::bitset<maxm> result((1LL << (m)) - 1);
+    if (i == j) return result;
+    for (int k = 0; k < m; ++k) {
+        bool pos = true;
+        for (int u = i; u < j; u++)
+            if (S[u][k] != S[u + 1][k]) pos = false;
+        result[k] = pos;
+    }
+    return result;
+}
+
+std::vector<std::pair<int, int>> strie::C_recursive(int i, int j, int r, const std::vector<std::string> &S) {
+    std::vector<std::pair<int, int>> result;
+    int start = i;
+    for (int k = i; k < j; ++k) {
+        if (S[k][r] != S[k + 1][r]) {
+            result.push_back({start, k});
+            start = k + 1;
+        }
+    }
+    result.push_back({start, j});
+    return result;
+}
+
+int strie::opt_recursive(int i, int j, const std::vector<std::string> &S) {
+    int result = 1e9;
+    int m = S[i].size();
+    if (i == j) return 0;
+    auto k_ = K_recursive(i, j, S);
+    k_.flip();
+    std::vector<int> R_;
+    for (int u = 0; u < m; ++u) if (k_[u]) R_.push_back(u);
+    for (const auto &r: R_) {
+        int temp_op = 0;
+        auto c = C_recursive(i, j, r, S);
+        for (const auto &p: c)
+            temp_op += opt_recursive(p.first, p.second, S) + count_bits(K_recursive(p.first, p.second, S), m) +
+                       count_bits(K_recursive(i, j, S), m);
+        if (temp_op < result) {
+            P[i][j] = r;
+            result = temp_op;
+        }
+    }
+    return result;
+}
+
+
+strie::strie(int n, int m, const std::vector<std::string> &S, builder b) {
+    switch (b) {
+        case recursive: {
+            P.resize(n, std::vector<int>(n));
+            opt_recursive(0, n - 1, S);
+            break;
+        }
+        case memory: {
+            break;
+        }
+        case dp: {
+            built_KR(S, n, m);
+            built_C(n, m, S);
+            built_opt(n, m);
+            built_trie(0, S.size() - 1, n, m, S, std::bitset<maxm>((1LL << (m)) - 1));
+            break;
+        }
+    }
 }
 
 int strie::get_size() {

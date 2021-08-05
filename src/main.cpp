@@ -4,29 +4,39 @@
 #include <fstream>
 #include <chrono>
 
-typedef std::chrono::high_resolution_clock Time;
-typedef std::chrono::milliseconds ms;
-typedef std::chrono::duration<float> fsec;
-
-
 int main() {
-    std::string filename = "inMed.txt";
-    std::ifstream input_file("input/" + filename);
+    std::string filename = "basicTest02";
+    // Open and read file
+    std::ifstream input_file("../input/" + filename + ".txt");
     std::vector<std::string> S;
     std::string input;
     while (std::getline(input_file, input)) S.push_back(input);
     input_file.close();
     int n = S.size(), m = S[0].size();
 
-    auto t0 = Time::now();
-    strie st(n, m, S);
-    auto t1 = Time::now();
-    fsec fs = t1 - t0;
-    ms d = std::chrono::duration_cast<ms>(fs);
-    std::cout << fs.count() << "s\n";
+    // Recursive Trie
+    std::cout << "<Recursive Trie>\n";
+    std::chrono::time_point<std::chrono::system_clock> start_rec, end_rec;
+    start_rec = std::chrono::system_clock::now();
+    strie strec(n, m, S, strie::recursive);
+    end_rec = std::chrono::system_clock::now();
+    std::chrono::duration<double> elapsed_seconds_rec = end_rec - start_rec;
+    std::cout << "elapsed time: " << elapsed_seconds_rec.count() << "s\n";
+    std::cout << strec << '\n';
 
-    std::ofstream output_file("output/" + filename);
-    output_file << st.to_string();
+    // DP Trie
+    std::cout << "<DP Trie>\n";
+    std::chrono::time_point<std::chrono::system_clock> start_dp, end_dp;
+    start_dp = std::chrono::system_clock::now();
+    strie stdp(n, m, S, strie::dp);
+    end_dp = std::chrono::system_clock::now();
+    std::chrono::duration<double> elapsed_seconds_dp = end_dp - start_dp;
+    std::cout << "elapsed time: " << elapsed_seconds_dp.count() << "s\n";
+    std::cout << stdp << '\n';
+
+    // Save and close file
+    std::ofstream output_file("../output/" + filename + ".trie");
+    output_file << stdp.to_string();
     output_file.close();
     return 0;
 }

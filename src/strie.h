@@ -14,8 +14,17 @@
 constexpr int maxm = 1e2;
 constexpr char key_position = '$';
 
+
 class strie {
+public:
+    enum builder {
+        recursive,
+        memory,
+        dp
+    };
+private:
     std::vector<std::unordered_map<char, int>> trie;
+    builder builder_;
 
     std::vector<std::vector<std::bitset<maxm>>> K;
     std::vector<std::vector<std::bitset<maxm>>> R;
@@ -29,10 +38,18 @@ class strie {
 
     void built_opt(int n, int m);
 
+
+    std::bitset<maxm> K_recursive(int i, int j, const std::vector<std::string> &S);
+
+    std::vector<std::pair<int, int>> C_recursive(int i, int j, int r, const std::vector<std::string> &S);
+
+    int opt_recursive(int i, int j, const std::vector<std::string> &S);
+
+
     int built_trie(int i, int j, int n, int m, const std::vector<std::string> &S, std::bitset<maxm> set);
 
 public:
-    strie(int n, int m, const std::vector<std::string> &S);
+    strie(int n, int m, const std::vector<std::string> &S, builder b);
 
     int get_size();
 

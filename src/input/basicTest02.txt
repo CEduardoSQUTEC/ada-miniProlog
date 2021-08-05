@@ -1,0 +1,6 @@
+aaa
+bab
+cab
+cbb
+dcb
+dcc

@@ -1,0 +1,3 @@
+/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/cmake-build-debug/CMakeFiles/src.dir
