@@ -1,0 +1,4 @@
+r1 abc
+r1 aab
+r2 ab
+r2 bc

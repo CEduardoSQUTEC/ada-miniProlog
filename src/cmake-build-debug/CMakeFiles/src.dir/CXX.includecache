@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/lib.h
+vector
+-
+map
+-
+unordered_map
+-
+unordered_set
+-
+bitset
+-
+algorithm
+-
+fstream
+-
+chrono
+-
+queue
+-
+
+/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/parser.cpp
+parser.h
+/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/parser.h
+strie.h
+/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/strie.h
+iostream
+-
+
+/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/parser.h
+lib.h
+/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/lib.h
+
+/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/strie.h
+parser.h
+/home/jztrk/Desktop/UTEC/Ciclo_V/ADA/ada-miniProlog/src/parser.h
+
