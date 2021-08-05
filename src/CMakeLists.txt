@@ -3,4 +3,4 @@ project(src)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(src main.cpp strie.cpp strie.h sptrie.cpp sptrie.h)
+add_executable(src main.cpp strie.cpp strie.h compiler.cpp compiler.h)

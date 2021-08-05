@@ -1,19 +1,15 @@
-//
-// Created by ceduardosq on 7/28/21.
-//
-
 #include "strie.h"
 #include <iostream>
 
-int count_bits(std::bitset<maxm> bs, int m) {
+int count_bits(std::bitset <maxm> bs, int m) {
     int result = 0;
     for (int i = 0; i < m; ++i) result += bs[i];
     return result;
 }
 
-std::vector<std::pair<int, int>>
-merge_intervals(const std::vector<std::pair<int, int>> &a, const std::vector<std::pair<int, int>> &b) { // O(a+b)
-    std::vector<std::pair<int, int>> result;
+std::vector <std::pair<int, int>>
+merge_intervals(const std::vector <std::pair<int, int>> &a, const std::vector <std::pair<int, int>> &b) { // O(a+b)
+    std::vector <std::pair<int, int>> result;
     auto itb = b.begin();
     for (auto ita = a.begin(); ita != a.end(); ++ita) {
         std::pair<int, int> temp = *ita;
@@ -29,10 +25,9 @@ merge_intervals(const std::vector<std::pair<int, int>> &a, const std::vector<std
 }
 
 
-
-void strie::built_KR(const std::vector<std::string> &S, int n, int m) { // O(n^2m)
-    K.resize(n, std::vector<std::bitset<maxm>>(n));
-    R.resize(n, std::vector<std::bitset<maxm>>(n));
+void strie::built_KR(const std::vector <std::string> &S, int n, int m) { // O(n^2m)
+    K.resize(n, std::vector < std::bitset < maxm >> (n));
+    R.resize(n, std::vector < std::bitset < maxm >> (n));
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < m; ++j)
             K[i][i][j] = true;
@@ -51,10 +46,10 @@ void strie::built_KR(const std::vector<std::string> &S, int n, int m) { // O(n^2
     }
 }
 
-void strie::built_C(int n, int m, const std::vector<std::string> &S) { // O(k*n*m)
-    C.resize(n, std::vector<std::vector<std::vector<std::pair<int, int>>>>(n,
-                                                                           std::vector<std::vector<std::pair<int, int>>>(
-                                                                                   m)));
+void strie::built_C(int n, int m, const std::vector <std::string> &S) { // O(k*n*m)
+    C.resize(n, std::vector < std::vector < std::vector < std::pair < int, int >> >> (n,
+            std::vector < std::vector < std::pair < int, int>>>(
+            m)));
     for (int j = 0; j < m; ++j) {
         for (int i = 0; i < n - 1; ++i) {
             if (S[i][j] == S[i + 1][j])
@@ -99,8 +94,7 @@ void strie::built_opt(int n, int m) {
 }
 
 
-
-int strie::opt_memory(int i, int j, const std::vector<std::string> &S) {
+int strie::opt_memory(int i, int j, const std::vector <std::string> &S) {
     if (i == j) return 0;
     if (opt[i][j] != -1) return opt[i][j];
 
@@ -140,10 +134,9 @@ int strie::opt_memory(int i, int j, const std::vector<std::string> &S) {
 }
 
 
-
-std::bitset<maxm> strie::K_recursive(int i, int j, const std::vector<std::string> &S) {
+std::bitset <maxm> strie::K_recursive(int i, int j, const std::vector <std::string> &S) {
     int m = S[i].size();
-    std::bitset<maxm> result((1LL << (m)) - 1);
+    std::bitset <maxm> result((1LL << (m)) - 1);
     if (i == j) return result;
     for (int k = 0; k < m; ++k) {
         bool pos = true;
@@ -154,8 +147,8 @@ std::bitset<maxm> strie::K_recursive(int i, int j, const std::vector<std::string
     return result;
 }
 
-std::vector<std::pair<int, int>> strie::C_recursive(int i, int j, int r, const std::vector<std::string> &S) {
-    std::vector<std::pair<int, int>> result;
+std::vector <std::pair<int, int>> strie::C_recursive(int i, int j, int r, const std::vector <std::string> &S) {
+    std::vector <std::pair<int, int>> result;
     int start = i;
     for (int k = i; k < j; ++k) {
         if (S[k][r] != S[k + 1][r]) {
@@ -167,7 +160,7 @@ std::vector<std::pair<int, int>> strie::C_recursive(int i, int j, int r, const s
     return result;
 }
 
-int strie::opt_recursive(int i, int j, const std::vector<std::string> &S) {
+int strie::opt_recursive(int i, int j, const std::vector <std::string> &S) {
     int result = 1e9;
     int m = S[i].size();
     if (i == j) return 0;
@@ -190,40 +183,39 @@ int strie::opt_recursive(int i, int j, const std::vector<std::string> &S) {
 }
 
 
-
-std::bitset<maxm> strie::get_K(int i, int j, const std::vector<std::string> &S) {
-    std::bitset<maxm> result{};
+std::bitset <maxm> strie::get_K(int i, int j, const std::vector <std::string> &S) {
+    std::bitset <maxm> result{};
     switch (builder_) {
         case recursive: {
             result = K_recursive(i, j, S);
             break;
         }
         case memory:
-            case dp: {
-                result = K[i][j];
-                break;
-            }
+        case dp: {
+            result = K[i][j];
+            break;
+        }
     }
     return result;
 }
 
-std::vector<std::pair<int, int>> strie::get_C(int i, int j, int r, const std::vector<std::string> &S) {
-    std::vector<std::pair<int, int>> result{};
+std::vector <std::pair<int, int>> strie::get_C(int i, int j, int r, const std::vector <std::string> &S) {
+    std::vector <std::pair<int, int>> result{};
     switch (builder_) {
         case recursive: {
             result = C_recursive(i, j, r, S);
             break;
         }
         case memory:
-            case dp: {
-                result = C[i][j][r];
-                break;
-            }
+        case dp: {
+            result = C[i][j][r];
+            break;
+        }
     }
     return result;
 }
 
-int strie::built_trie(int i, int j, int n, int m, const std::vector<std::string> &S, std::bitset<maxm> I) {
+int strie::built_trie(int i, int j, int n, int m, const std::vector <std::string> &S, std::bitset <maxm> I) {
     // Save the current state
     int current_state = trie.size();
     // K_ = K[i,j] & I
@@ -265,9 +257,7 @@ int strie::built_trie(int i, int j, int n, int m, const std::vector<std::string>
     return current_state;
 }
 
-
-
-strie::strie(int n, int m, const std::vector<std::string> &S, builder b) {
+strie::strie(int n, int m, const std::vector <std::string> &S, builder b) {
     builder_ = b;
     switch (b) {
         case recursive: {
@@ -278,13 +268,13 @@ strie::strie(int n, int m, const std::vector<std::string> &S, builder b) {
         case memory: {
             P.resize(n, std::vector<int>(n));
             opt.resize(n, std::vector<int>(n, -1));
-            C.resize(n, std::vector<std::vector<std::vector<std::pair<int, int>>>>(n,
-                                                                                   std::vector<std::vector<std::pair<int, int>>>(
-                                                                                           m)));
-            K.resize(n, std::vector<std::bitset<maxm>>(n));
-            R.resize(n, std::vector<std::bitset<maxm>>(n));
+            C.resize(n, std::vector < std::vector < std::vector < std::pair < int, int >> >> (n,
+                    std::vector < std::vector < std::pair < int, int>>>(
+                    m)));
+            K.resize(n, std::vector < std::bitset < maxm >> (n));
+            R.resize(n, std::vector < std::bitset < maxm >> (n));
             KRB.resize(n, std::vector<bool>(n, false));
-            CB.resize(n, std::vector<std::vector<bool>>(n, std::vector<bool>(m, false)));
+            CB.resize(n, std::vector < std::vector < bool >> (n, std::vector<bool>(m, false)));
             opt_memory(0, n - 1, S);
             break;
         }
@@ -322,24 +312,31 @@ void strie::print(int node, char edge = '*', int depth = 0) {
 std::string strie::to_string() {
     std::string result = "";
     for (int i = 0; i < trie.size(); ++i) {
-        result += std::to_string(i) + " [";
-        std::vector<std::pair<char, int>> a;
+        result += std::to_string(i) + " ";
+        std::vector <std::pair<char, int>> a;
         for (const auto &e:trie[i]) {
             if (e.first == '$') continue;
             a.push_back({e.first, e.second});
         }
         for (auto it = a.rbegin(); it != a.rend(); ++it) {
-            if (it != a.rbegin()) result += ", ";
-            result += "(\'" + std::string(1, it->first) + "\'" + ", " + std::to_string(it->second) + ")";
+            if (it != a.rbegin()) result += ";";
+            result += std::string(1, it->first) + std::to_string(it->second);
         }
-        result += "]\n";
+        result += ";\n";
     }
     return result;
 }
 
-std::ostream &operator<<(std::ostream &os, strie &st) {
+void strie::save_trie(bool is_opt) {
+    std::ofstream output_file(std::string("output/") + (is_opt ? "opt.txt" : "greedy.txt"));
+    output_file << to_string();
+    output_file.close();
+}
+
+std::ostream &operator<<(std::ostream &os, strie & st) {
     os << "Edges: " << st.get_size() - 1 << '\n';
     os << "s-trie:\n";
     st.print(0);
     return os;
 }
+

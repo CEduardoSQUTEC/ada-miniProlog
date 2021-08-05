@@ -1,0 +1,13 @@
+#ifndef SRC_LIB_H
+#define SRC_LIB_H
+#include <iostream>
+#include <vector>
+#include <map>
+#include <unordered_map>
+#include <unordered_set>
+#include <bitset>
+#include <algorithm>
+#include <fstream>
+#include <chrono>
+#include <queue>
+#endif //SRC_LIB_H

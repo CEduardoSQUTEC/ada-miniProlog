@@ -1,7 +1,3 @@
-//
-// Created by ceduardosq on 7/28/21.
-//
-
 #ifndef SRC_STRIE_H
 #define SRC_STRIE_H
 
@@ -10,6 +6,7 @@
 #include <unordered_set>
 #include <bitset>
 #include <algorithm>
+#include "compiler.h"
 
 constexpr int maxm = 1e3;
 constexpr char key_position = '$';
@@ -65,9 +62,9 @@ public:
 
     void print(int, char, int);
 
-    std::string to_string();
+    void save_trie(bool is_opt);
 
-    friend std::ostream &operator<<(std::ostream &os, const strie &st);
+    std::string to_string();
 };
 
 int count_bits(std::bitset<maxm> bs, int m);
