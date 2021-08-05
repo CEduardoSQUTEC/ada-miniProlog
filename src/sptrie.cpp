@@ -8,14 +8,13 @@ bool cmpMap(std::pair<char, int> &a, std::pair<char, int> &b) {
     return a.second < b.second;
 }
 
-std::map<char, int> sortMap(std::map<char, int> &m) {
+std::vector<std::pair<char, int>> sortMap(std::map<char, int> &m) {
     std::vector<std::pair<char, int>> v;
 
     for(auto& it : m) { v.push_back(it);}
     std::sort(v.begin(), v.end(), cmpMap);
-    std::map<char, int> nm(v.begin(), v.end());
 
-    return nm;
+    return v;
 }
 
 std::ostream &operator<<(std::ostream &os, sptrie &sp) {

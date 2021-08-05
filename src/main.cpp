@@ -67,7 +67,7 @@
 #include <vector>
 
 int main() {
-    std::string filename = "inMed";
+    std::string filename = "basicTest03";
     // Open and read file
     std::ifstream input_file("../input/" + filename + ".txt");
     std::vector<std::string> S;
@@ -85,7 +85,7 @@ int main() {
     std::chrono::duration<double> elapsed_seconds_mem = end_mem - start_mem;
     std::cout << "elapsed time: " << elapsed_seconds_mem.count() << "s\n";
 
-    std::ofstream output_file_greedy("../output/" + filename + "-dp.txt");
+    std::ofstream output_file_greedy("../output/" + filename + "-g.txt");
     output_file_greedy << min.printTrie();
     output_file_greedy.close();
     return 0;
