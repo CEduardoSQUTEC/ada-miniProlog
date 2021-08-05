@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/compiler.h
+lib.h
+/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/lib.h
+
+/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/lib.h
+iostream
+-
+vector
+-
+map
+-
+unordered_map
+-
+unordered_set
+-
+bitset
+-
+algorithm
+-
+fstream
+-
+chrono
+-
+queue
+-
+
+/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/main.cpp
+compiler.h
+/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/compiler.h
+
