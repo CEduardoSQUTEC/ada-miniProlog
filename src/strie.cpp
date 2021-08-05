@@ -28,6 +28,8 @@ merge_intervals(const std::vector<std::pair<int, int>> &a, const std::vector<std
     return result;
 }
 
+
+
 void strie::built_KR(const std::vector<std::string> &S, int n, int m) { // O(n^2m)
     K.resize(n, std::vector<std::bitset<maxm>>(n));
     R.resize(n, std::vector<std::bitset<maxm>>(n));
@@ -96,45 +98,48 @@ void strie::built_opt(int n, int m) {
     }
 }
 
-int strie::built_trie(int i, int j, int n, int m, const std::vector<std::string> &S, std::bitset<maxm> I) {
-    // Save the current state
-    int current_state = trie.size();
-    // K_ = K[i,j] & I
-    auto temp_set = K[i][j] & I;
-    I = I & (~temp_set);
-    std::vector<int> K_;
-    for (int k = 0; k < m; ++k) if (temp_set[k]) K_.push_back(k);
-    // Set all the common states
-    for (const auto &e: K_)
-        trie.push_back(std::unordered_map<char, int>() = {{key_position, e}});
-    // Set the edges between them
-    for (int k = current_state; k < (int) trie.size() - 1; ++k) {
-        char edge = S[i][trie[k][key_position]];
-        trie[k][edge] = k + 1;
+
+
+int strie::opt_memory(int i, int j, const std::vector<std::string> &S) {
+    if (i == j) return 0;
+    if (opt[i][j] != -1) return opt[i][j];
+
+    int m = S[i].size();
+    opt[i][j] = 1e9;
+
+    if (!KRB[i][j]) {
+        auto tempK = K_recursive(i, j, S);
+        K[i][j] = tempK;
+        R[i][j] = tempK.flip();
+        KRB[i][j] = true;
     }
-    if (i == j) {
-        trie.push_back(std::unordered_map<char, int>() = {{key_position, -1}});
-        if (current_state < (int) trie.size() - 1) {
-            char edge = S[i][trie[(int) trie.size() - 2][key_position]];
-            trie[(int) trie.size() - 2][edge] = (int) trie.size() - 1;
+
+    std::vector<int> R_;
+    for (int u = 0; u < m; ++u) if (R[i][j][u]) R_.push_back(u);
+    for (const auto &r: R_) {
+        int temp_op = 0;
+        if (!CB[i][j][r]) {
+            C[i][j][r] = C_recursive(i, j, r, S);
+            CB[i][j][r] = true;
         }
-    } else {
-        // C[i, j, r] Built the rest of the tree
-        int r = P[i][j];
-        trie.push_back(std::unordered_map<char, int>() = {{key_position, r}});
-        if (current_state < (int) trie.size() - 1) {
-            char edge = S[i][trie[(int) trie.size() - 2][key_position]];
-            trie[(int) trie.size() - 2][edge] = (int) trie.size() - 1;
+        for (const auto &p : C[i][j][r]) {
+            if (!KRB[p.first][p.second]) {
+                auto tempK = K_recursive(p.first, p.second, S);
+                K[p.first][p.second] = tempK;
+                R[p.first][p.second] = tempK.flip();
+                KRB[p.first][p.second] = true;
+            }
+            temp_op += opt_memory(p.first, p.second, S) + count_bits(K[p.first][p.second], m) - count_bits(K[i][j], m);
         }
-        I[r] = false;
-        int last_state = (int) trie.size() - 1;
-        for (const auto &p: C[i][j][r]) {
-            char edge = S[p.first][r];
-            trie[last_state][edge] = built_trie(p.first, p.second, n, m, S, I);
+        if (temp_op < opt[i][j]) {
+            P[i][j] = r;
+            opt[i][j] = temp_op;
         }
     }
-    return current_state;
+    return opt[i][j];
 }
+
+
 
 std::bitset<maxm> strie::K_recursive(int i, int j, const std::vector<std::string> &S) {
     int m = S[i].size();
@@ -174,7 +179,7 @@ int strie::opt_recursive(int i, int j, const std::vector<std::string> &S) {
         int temp_op = 0;
         auto c = C_recursive(i, j, r, S);
         for (const auto &p: c)
-            temp_op += opt_recursive(p.first, p.second, S) + count_bits(K_recursive(p.first, p.second, S), m) +
+            temp_op += opt_recursive(p.first, p.second, S) + count_bits(K_recursive(p.first, p.second, S), m) -
                        count_bits(K_recursive(i, j, S), m);
         if (temp_op < result) {
             P[i][j] = r;
@@ -185,7 +190,85 @@ int strie::opt_recursive(int i, int j, const std::vector<std::string> &S) {
 }
 
 
+
+std::bitset<maxm> strie::get_K(int i, int j, const std::vector<std::string> &S) {
+    std::bitset<maxm> result{};
+    switch (builder_) {
+        case recursive: {
+            result = K_recursive(i, j, S);
+            break;
+        }
+        case memory:
+            case dp: {
+                result = K[i][j];
+                break;
+            }
+    }
+    return result;
+}
+
+std::vector<std::pair<int, int>> strie::get_C(int i, int j, int r, const std::vector<std::string> &S) {
+    std::vector<std::pair<int, int>> result{};
+    switch (builder_) {
+        case recursive: {
+            result = C_recursive(i, j, r, S);
+            break;
+        }
+        case memory:
+            case dp: {
+                result = C[i][j][r];
+                break;
+            }
+    }
+    return result;
+}
+
+int strie::built_trie(int i, int j, int n, int m, const std::vector<std::string> &S, std::bitset<maxm> I) {
+    // Save the current state
+    int current_state = trie.size();
+    // K_ = K[i,j] & I
+    // - Before: auto temp_set = K[i][j] & I;
+    auto temp_set = get_K(i, j, S) & I;
+    I = I & (~temp_set);
+    std::vector<int> K_;
+    for (int k = 0; k < m; ++k) if (temp_set[k]) K_.push_back(k);
+    // Set all the common states
+    for (const auto &e: K_)
+        trie.push_back(std::unordered_map<char, int>() = {{key_position, e}});
+    // Set the edges between them
+    for (int k = current_state; k < (int) trie.size() - 1; ++k) {
+        char edge = S[i][trie[k][key_position]];
+        trie[k][edge] = k + 1;
+    }
+    if (i == j) {
+        trie.push_back(std::unordered_map<char, int>() = {{key_position, -1}});
+        if (current_state < (int) trie.size() - 1) {
+            char edge = S[i][trie[(int) trie.size() - 2][key_position]];
+            trie[(int) trie.size() - 2][edge] = (int) trie.size() - 1;
+        }
+    } else {
+        // C[i, j, r] Built the rest of the tree
+        int r = P[i][j];
+        trie.push_back(std::unordered_map<char, int>() = {{key_position, r}});
+        if (current_state < (int) trie.size() - 1) {
+            char edge = S[i][trie[(int) trie.size() - 2][key_position]];
+            trie[(int) trie.size() - 2][edge] = (int) trie.size() - 1;
+        }
+        I[r] = false;
+        int last_state = (int) trie.size() - 1;
+        //      - Before: for (const auto &p: C[i][j][r]) {
+        for (const auto &p: get_C(i, j, r, S)) {
+            char edge = S[p.first][r];
+            trie[last_state][edge] = built_trie(p.first, p.second, n, m, S, I);
+        }
+    }
+    return current_state;
+}
+
+
+
 strie::strie(int n, int m, const std::vector<std::string> &S, builder b) {
+    builder_ = b;
     switch (b) {
         case recursive: {
             P.resize(n, std::vector<int>(n));
@@ -193,16 +276,29 @@ strie::strie(int n, int m, const std::vector<std::string> &S, builder b) {
             break;
         }
         case memory: {
+            P.resize(n, std::vector<int>(n));
+            opt.resize(n, std::vector<int>(n, -1));
+            C.resize(n, std::vector<std::vector<std::vector<std::pair<int, int>>>>(n,
+                                                                                   std::vector<std::vector<std::pair<int, int>>>(
+                                                                                           m)));
+            K.resize(n, std::vector<std::bitset<maxm>>(n));
+            R.resize(n, std::vector<std::bitset<maxm>>(n));
+            KRB.resize(n, std::vector<bool>(n, false));
+            CB.resize(n, std::vector<std::vector<bool>>(n, std::vector<bool>(m, false)));
+            opt_memory(0, n - 1, S);
             break;
         }
         case dp: {
             built_KR(S, n, m);
             built_C(n, m, S);
             built_opt(n, m);
-            built_trie(0, S.size() - 1, n, m, S, std::bitset<maxm>((1LL << (m)) - 1));
             break;
         }
+        default: {
+            std::cerr << "Invalid build" << '\n';
+        }
     }
+    built_trie(0, S.size() - 1, n, m, S, std::bitset<maxm>((1LL << (m)) - 1));
 }
 
 int strie::get_size() {
@@ -223,13 +319,6 @@ void strie::print(int node, char edge = '*', int depth = 0) {
     }
 }
 
-std::ostream &operator<<(std::ostream &os, strie &st) {
-    os << "Edges: " << st.get_size() - 1 << '\n';
-    os << "s-trie:\n";
-    st.print(0);
-    return os;
-}
-
 std::string strie::to_string() {
     std::string result = "";
     for (int i = 0; i < trie.size(); ++i) {
@@ -248,3 +337,9 @@ std::string strie::to_string() {
     return result;
 }
 
+std::ostream &operator<<(std::ostream &os, strie &st) {
+    os << "Edges: " << st.get_size() - 1 << '\n';
+    os << "s-trie:\n";
+    st.print(0);
+    return os;
+}

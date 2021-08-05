@@ -11,9 +11,8 @@
 #include <bitset>
 #include <algorithm>
 
-constexpr int maxm = 1e2;
+constexpr int maxm = 1e3;
 constexpr char key_position = '$';
-
 
 class strie {
 public:
@@ -25,6 +24,7 @@ public:
 private:
     std::vector<std::unordered_map<char, int>> trie;
     builder builder_;
+
 
     std::vector<std::vector<std::bitset<maxm>>> K;
     std::vector<std::vector<std::bitset<maxm>>> R;
@@ -39,12 +39,22 @@ private:
     void built_opt(int n, int m);
 
 
+    std::vector<std::vector<bool>> KRB;
+    std::vector<std::vector<std::vector<bool>>> CB;
+
+    int opt_memory(int i, int j, const std::vector<std::string> &S);
+
+
     std::bitset<maxm> K_recursive(int i, int j, const std::vector<std::string> &S);
 
     std::vector<std::pair<int, int>> C_recursive(int i, int j, int r, const std::vector<std::string> &S);
 
     int opt_recursive(int i, int j, const std::vector<std::string> &S);
 
+
+    std::vector<std::pair<int, int>> get_C(int i, int j, int r, const std::vector<std::string> &S);
+
+    std::bitset<maxm> get_K(int i, int j, const std::vector<std::string> &S);
 
     int built_trie(int i, int j, int n, int m, const std::vector<std::string> &S, std::bitset<maxm> set);
 

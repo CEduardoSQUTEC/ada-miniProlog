@@ -5,7 +5,7 @@
 #include <chrono>
 
 int main() {
-    std::string filename = "basicTest02";
+    std::string filename = "RandomTest";
     // Open and read file
     std::ifstream input_file("../input/" + filename + ".txt");
     std::vector<std::string> S;
@@ -24,6 +24,16 @@ int main() {
     std::cout << "elapsed time: " << elapsed_seconds_rec.count() << "s\n";
     std::cout << strec << '\n';
 
+    // Memory Trie
+    std::cout << "<Memory Trie>\n";
+    std::chrono::time_point<std::chrono::system_clock> start_mem, end_mem;
+    start_mem = std::chrono::system_clock::now();
+    strie stmem(n, m, S, strie::memory);
+    end_mem = std::chrono::system_clock::now();
+    std::chrono::duration<double> elapsed_seconds_mem = end_mem - start_mem;
+    std::cout << "elapsed time: " << elapsed_seconds_mem.count() << "s\n";
+    std::cout << stmem << '\n';
+
     // DP Trie
     std::cout << "<DP Trie>\n";
     std::chrono::time_point<std::chrono::system_clock> start_dp, end_dp;
@@ -35,8 +45,17 @@ int main() {
     std::cout << stdp << '\n';
 
     // Save and close file
-    std::ofstream output_file("../output/" + filename + ".trie");
-    output_file << stdp.to_string();
-    output_file.close();
+    std::ofstream output_file_rec("../output/" + filename + "-rec.txt");
+    output_file_rec << strec.to_string();
+    output_file_rec.close();
+
+    std::ofstream output_file_mem("../output/" + filename + "-mem.txt");
+    output_file_mem << stmem.to_string();
+    output_file_mem.close();
+
+    std::ofstream output_file_dp("../output/" + filename + "-dp.txt");
+    output_file_dp << stdp.to_string();
+    output_file_dp.close();
+
     return 0;
 }
