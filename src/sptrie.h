@@ -13,20 +13,9 @@
 #include <iostream>
 #include <algorithm>
 
-bool cmpMap(std::pair<char, int>& a, std::pair<char,int>& b); {
-    return a.second < b.second;
-}
+bool cmpMap(std::pair<char, int>& a, std::pair<char,int>& b);
 
-std::map<char, int> sortMap(std::map<char, int> &m) {
-
-    std::vector<std::pair<char, int>> v;
-
-    for(auto& it : m) { v.push_back(it);}
-    std::sort(v.begin(), v.end(), cmpMap);
-    std::map<char, int> nm(v.begin(), v.end());
-
-    return nm;
-}
+std::map<char, int> sortMap(std::map<char, int> &m);
 
 struct sptrieNode {
     int id;

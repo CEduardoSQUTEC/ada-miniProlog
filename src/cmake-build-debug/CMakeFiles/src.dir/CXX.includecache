@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/abril/repos/ada-miniProlog/src/main.cpp
+/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/main.cpp
 sptrie.h
-C:/Users/abril/repos/ada-miniProlog/src/sptrie.h
+/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/sptrie.h
 fstream
 -
 chrono
@@ -18,11 +18,11 @@ iostream
 vector
 -
 
-C:/Users/abril/repos/ada-miniProlog/src/sptrie.cpp
+/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/sptrie.cpp
 sptrie.h
-C:/Users/abril/repos/ada-miniProlog/src/sptrie.h
+/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/sptrie.h
 
-C:/Users/abril/repos/ada-miniProlog/src/sptrie.h
+/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/sptrie.h
 vector
 -
 unordered_map

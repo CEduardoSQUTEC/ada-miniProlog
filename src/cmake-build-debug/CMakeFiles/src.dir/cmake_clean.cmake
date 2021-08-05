@@ -1,10 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/src.dir/main.cpp.obj"
-  "CMakeFiles/src.dir/sptrie.cpp.obj"
-  "CMakeFiles/src.dir/strie.cpp.obj"
-  "libsrc.dll.a"
-  "src.exe"
-  "src.exe.manifest"
+  "CMakeFiles/src.dir/main.cpp.o"
+  "CMakeFiles/src.dir/sptrie.cpp.o"
+  "CMakeFiles/src.dir/strie.cpp.o"
+  "src"
   "src.pdb"
 )
 

@@ -1,17 +1,25 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
   "CXX"
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/abril/repos/ada-miniProlog/src/main.cpp" "C:/Users/abril/repos/ada-miniProlog/src/cmake-build-debug/CMakeFiles/src.dir/main.cpp.obj"
-  "C:/Users/abril/repos/ada-miniProlog/src/sptrie.cpp" "C:/Users/abril/repos/ada-miniProlog/src/cmake-build-debug/CMakeFiles/src.dir/sptrie.cpp.obj"
-  "C:/Users/abril/repos/ada-miniProlog/src/strie.cpp" "C:/Users/abril/repos/ada-miniProlog/src/cmake-build-debug/CMakeFiles/src.dir/strie.cpp.obj"
+  "/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/main.cpp" "/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/cmake-build-debug/CMakeFiles/src.dir/main.cpp.o"
+  "/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/sptrie.cpp" "/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/cmake-build-debug/CMakeFiles/src.dir/sptrie.cpp.o"
+  "/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/strie.cpp" "/home/ceduardosq/Documents/classes/ada/ada-miniProlog/src/cmake-build-debug/CMakeFiles/src.dir/strie.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  )
+
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
   )
 
 # Targets to which this target links.
