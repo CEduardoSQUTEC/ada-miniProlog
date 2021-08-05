@@ -4,7 +4,8 @@
 
 #include "sptrie.h"
 
-sptrie::sptrie(const std::vector<std::string> &S, int n, int m) {
-
-
+std::ostream &operator<<(std::ostream &os, sptrie &sp) {
+    os << "Edges: " << sp.nodes << '\n';
+    os << "s-trie:\n";
+    return os;
 }
